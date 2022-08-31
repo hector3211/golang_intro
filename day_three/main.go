@@ -1,6 +1,7 @@
 package main
 
 import (
+	"encoding/json"
 	"fmt"
 )
 
@@ -32,11 +33,32 @@ func main() {
 	fmt.Println(a)
 	fmt.Println(len(a))
 
-  // Json Conversion
+	// Json Conversion
+	sFrom := `{"name":"madDog","weapon":{"weapon_name":"headhunter","weapon_level":99},"level":1}`
+	fmt.Println(sFrom)
+	var chamber Agent // referring to our Agent struct
+	err := json.Unmarshal([]byte(sFrom), &chamber)
+	if err != nil {
+		fmt.Println("bad stuff")
+	}
+	fmt.Println(chamber)
+	// Go Object to Json
+	sTo, err := json.Marshal(chamber)
+	if err != nil {
+		fmt.Println("something bad")
+		fmt.Println(err)
+	}
+	fmt.Println(sTo) // right now this returns bytes
+	// converting it to a string
+	fmt.Printf("%s\n", sTo) // %s tells we want it as Json
 }
 
-type agent {
-  name string
-  weapon string
-  level int
+type Agent struct { // CAP first letter
+	Name   string `json:"name"`   // CAP first letter
+	Weapon Weapon `json:"weapon"` // CAP first letter
+	Level  int    `json:"level"`  // CAP first letter
+}
+type Weapon struct {
+	Name  string `json:"weapon_name"`
+	Level int    `json:"weapon_level"`
 }

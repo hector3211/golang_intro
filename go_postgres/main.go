@@ -2,8 +2,8 @@ package main
 
 import (
 	"github.com/gin-gonic/gin"
+	"go_postgres/controllers"
 	"go_postgres/initial"
-	"net/http"
 )
 
 func init() {
@@ -13,10 +13,10 @@ func init() {
 
 func main() {
 	r := gin.Default()
-	r.GET("/", func(c *gin.Context) {
-		c.JSON(http.StatusOK, gin.H{
-			"message": "pong",
-		})
-	})
+	r.GET("/allproducts", controllers.AllProducts)
+	r.GET("/products/:id", controllers.ProductByIndex)
+	r.POST("/products", controllers.ProductsCreate)
+	r.PUT("/products/:id", controllers.UpdateProduct)
+	r.DELETE("/products/:id", controllers.DeleteProductById)
 	r.Run() // listen and serve on 0.0.0.0:8080 (for windows "localhost:8080")
 }

@@ -4,7 +4,7 @@
 
 ## Starting code in main.go
 
-```
+```go:
 import (
 "github.com/gin-gonic/gin" // gin framework
 "net/http" // gin dependency

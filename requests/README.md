@@ -4,7 +4,7 @@
 
 ## Starting code in main.go
 
-`code` import (
+`import (
 "github.com/gin-gonic/gin" // gin framework
 "net/http" // gin dependency
 "requests/requests" // folder thats holds our routes
@@ -25,4 +25,4 @@ r.GET("/hello", requests.FirstRequest)
 r.GET("/pokemon", requests.SecondRequest)
 // run our server
 r.Run() // listen and serve on 0.0.0.0:8080 (for windows "localhost:8080")
-}
+}`

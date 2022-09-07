@@ -59,3 +59,9 @@ func SecondRequest(c *gin.Context) {
 	// return our json value
 	c.JSON(http.StatusOK, jsonResult)
 }
+
+func ThirdRequest(c *gin.Context) {
+	c.HTML(http.StatusOK, "index.html", gin.H{
+		"title": "main wesbite",
+	})
+}

@@ -1,4 +1,4 @@
-# Go gin api endpoint
+# Go gin api endpoint project
 
 ## In this project i use the gin framework to grab Pokemon from the pokemon api
 
@@ -12,19 +12,19 @@
      )
 
      func main() {
-     // se up our paths
-     r := gin.Default()
-     r.SetTrustedProxies([]string{"127.0.0.1"})
-     // example path
-     r.GET("/ping", func(c *gin.Context) {
-       c.JSON(http.StatusOK, gin.H{
-         "message": "pong",
-       })
-     })
-     // paths
-     r.GET("/hello", requests.FirstRequest)
-     r.GET("/pokemon", requests.SecondRequest)
-     // run our server
-     r.Run() // listen and serve on 0.0.0.0:8080 (for windows "localhost:8080")
+      // se up our paths
+      r := gin.Default()
+      r.SetTrustedProxies([]string{"127.0.0.1"})
+      // example path
+      r.GET("/ping", func(c *gin.Context) {
+        c.JSON(http.StatusOK, gin.H{
+          "message": "pong",
+        })
+      })
+      // paths
+      r.GET("/hello", requests.FirstRequest)
+      r.GET("/pokemon", requests.SecondRequest)
+      // run our server
+      r.Run() // listen and serve on 0.0.0.0:8080 (for windows "localhost:8080")
      }
 ```

@@ -11,6 +11,7 @@ func main() {
 	app.Get("/", func(c *fiber.Ctx) error {
 		return c.SendString("Hello, World!")
 	})
-	app.Get("/:value", controllers.GetValue)
+	app.Get("/pokemons", controllers.GetAllPokemons)
+	app.Get("/pokemons/:name", controllers.SelectedPokemon)
 	app.Listen(":3000")
 }

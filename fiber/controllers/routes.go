@@ -3,8 +3,6 @@ package controllers
 import (
 	// "encoding/json"
 	"encoding/json"
-	"fmt"
-	"io"
 	"net/http"
 
 	"github.com/gofiber/fiber/v2"
@@ -39,24 +37,21 @@ func SelectedPokemon(c *fiber.Ctx) error {
 	type SinglePokemon struct {
 		Name string `json:name`
 	}
-	type Name struct {
-		Name string `json:name`
+	type Front_Default struct {
+		Front_Default string `json:front_default`
 	}
-	type Species struct {
-		Species Name `json:species`
+	type Sprites struct {
+		Sprites Front_Default `json:sprites`
 	}
 	// var jsonResult SinglePokemon
-	var picture Species
+	var jsonPic Sprites
 	name := c.Params("name")
 	resp, err := http.Get(Url + name)
 	if err != nil {
 		return c.Status(fiber.StatusBadRequest).SendStatus(404)
 	}
 	defer resp.Body.Close()
-	body, err := io.ReadAll(resp.Body)
-	fmt.Println(body)
 	// json.NewDecoder(resp.Body).Decode(&jsonResult)
-	json.NewDecoder(resp.Body).Decode(&picture.Species.Name)
-
-	return c.JSON(picture)
+	json.NewDecoder(resp.Body).Decode(&jsonPic)
+	return c.JSON(jsonPic.Sprites.Front_Default)
 }

@@ -50,7 +50,7 @@ func SelectedPokemon(c *fiber.Ctx) error {
 		Sprites Other `json:sprites`
 	}
 
-	// var jsonResult SinglePokemon
+	var jsonResult SinglePokemon
 	var pokemonPic Sprites
 	name := c.Params("name")
 	resp, err := http.Get(Url + name)
@@ -58,7 +58,7 @@ func SelectedPokemon(c *fiber.Ctx) error {
 		return c.Status(fiber.StatusBadRequest).SendStatus(404)
 	}
 	defer resp.Body.Close()
-	// json.NewDecoder(resp.Body).Decode(&jsonResult)
+	json.NewDecoder(resp.Body).Decode(&jsonResult)
 	json.NewDecoder(resp.Body).Decode(&pokemonPic)
 	return c.JSON(pokemonPic)
 }

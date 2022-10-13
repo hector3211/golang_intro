@@ -40,11 +40,18 @@ func SelectedPokemon(c *fiber.Ctx) error {
 	type Front_Default struct {
 		Front_Default string `json:front_default`
 	}
-	type Sprites struct {
-		Sprites Front_Default `json:sprites`
+	type Dream_World struct {
+		Dream_World Front_Default `json:dream_world`
 	}
+	type Other struct {
+		Other Dream_World `json:other`
+	}
+	type Sprites struct {
+		Sprites Other `json:sprites`
+	}
+
 	// var jsonResult SinglePokemon
-	var jsonPic Sprites
+	var pokemonPic Sprites
 	name := c.Params("name")
 	resp, err := http.Get(Url + name)
 	if err != nil {
@@ -52,6 +59,6 @@ func SelectedPokemon(c *fiber.Ctx) error {
 	}
 	defer resp.Body.Close()
 	// json.NewDecoder(resp.Body).Decode(&jsonResult)
-	json.NewDecoder(resp.Body).Decode(&jsonPic)
-	return c.JSON(jsonPic.Sprites.Front_Default)
+	json.NewDecoder(resp.Body).Decode(&pokemonPic)
+	return c.JSON(pokemonPic)
 }

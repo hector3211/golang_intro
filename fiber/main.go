@@ -13,5 +13,9 @@ func main() {
 	})
 	app.Get("/pokemons", controllers.GetAllPokemons)
 	app.Get("/pokemons/:name", controllers.SelectedPokemon)
+	// 404
+	app.Use(func(c *fiber.Ctx) error {
+		return c.SendStatus(404)
+	})
 	app.Listen(":3000")
 }

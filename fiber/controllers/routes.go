@@ -10,19 +10,14 @@ import (
 
 const Url = "https://pokeapi.co/api/v2/pokemon/"
 
-func GetValue(c *fiber.Ctx) error {
-	return c.SendString("value is:" + c.Params("value"))
-}
-
-type Pokemons struct {
-	Name string `json:"name"`
-	Url  string `json:"url"`
-}
-type Results struct {
-	Results []Pokemons `json:"results"`
-}
-
 func GetAllPokemons(c *fiber.Ctx) error {
+	type Pokemons struct {
+		Name string `json:"name"`
+		Url  string `json:"url"`
+	}
+	type Results struct {
+		Results []Pokemons `json:"results"`
+	}
 	var jsonResult Results
 	resp, err := http.Get(Url)
 	if err != nil {

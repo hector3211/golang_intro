@@ -1,0 +1,16 @@
+body{
+    margin:0;
+    box-sizing:border-box;
+}
+
+.layout{
+    min-height:100vh;
+    max-width:100%;
+}
+
+.bg{
+    display:flex;
+    flex-direction:column;
+    justify-content: center;
+    align-items: center;
+}

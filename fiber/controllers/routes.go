@@ -68,3 +68,7 @@ func PokemonPic(c *fiber.Ctx) error {
 	json.NewDecoder(resp.Body).Decode(&pokemonPic)
 	return c.JSON(pokemonPic.Sprites.Other.Dream_World)
 }
+
+func GottaGetThemAll(c fiber.Ctx) error{
+    return c.SendString("gotta get them all")
+}

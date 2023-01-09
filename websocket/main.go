@@ -8,10 +8,7 @@ import (
 	"github.com/gorilla/websocket"
 )
 
-var upGrader = websocket.Upgrader{
-	ReadBufferSize:  1024,
-	WriteBufferSize: 1024,
-}
+var upGrader = websocket.Upgrader{}
 
 func homePage(w http.ResponseWriter, r *http.Request) {
 	fmt.Fprintf(w, "homepage")
